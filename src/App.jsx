@@ -97,7 +97,9 @@ export default function App() {
   return (
     <>
       <NavBar/>
-      <div className="container-fluid button-container d-flex justify-content-flex-start flex-wrap ">
+      
+      <main className="container">
+        <div className="container-fluid button-container d-flex justify-content-flex-start flex-wrap ">
         <Buttons>What's New</Buttons>
         <Buttons>Best Sellers</Buttons>
         <Buttons>Bundles</Buttons>
@@ -105,11 +107,10 @@ export default function App() {
         <Buttons>AMD</Buttons>
         <Buttons>Pre-order now</Buttons>
       </div>
-      <main className="container">
         <h1 className="m-9">Framework Laptops</h1>
         <ProductList products={products}/>
            
-        </main>  
+      </main>  
         <Footer year={new Date().getFullYear()}/>
 
     </>
