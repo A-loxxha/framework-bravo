@@ -3,6 +3,7 @@ import Hero from "./components/Hero"
 import ProductList from "./components/ProductList"
 import Footer from "./components/Footer"
 import Buttons from "./Buttons"
+import SideBar from "./components/SideBar"
 import "./App.css"
 
 export default function App() {
@@ -97,7 +98,7 @@ export default function App() {
   return (
     <>
       <NavBar/>
-      
+      <SideBar/>
       <main className="container">
         <div className="container-fluid button-container d-flex justify-content-flex-start flex-wrap ">
         <Buttons>What's New</Buttons>

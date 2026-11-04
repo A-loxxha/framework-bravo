@@ -7,6 +7,22 @@ body {
   background-color: hwb(0 92% 7%);
   color: rgb(7, 7, 7);
 }
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 80px;
+  left: 0;
+  background-color: hwb(0 96% 4%);
+  overflow-x: hidden;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+main {
+  margin-left: 250px;
+  padding: 20px;
+}
 .hero {
   height: 600px;
   background-image: url("https://images.frame.work/frameworkmarketplace/aJBl86Tt2nPbZzs1_homepage_fw13-banner_desktop.jpg?auto=format,compress&fit=crop&h=600&w=1126");
@@ -40,6 +56,7 @@ body {
 .footer {
     background-color: hwb(0 4% 96%);
     margin-top: 20px;
+    margin-left: 250px;
 }
 
 #footer {
