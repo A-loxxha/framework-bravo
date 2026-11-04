@@ -1,7 +1,7 @@
 import assets from "../assets/Framework Logo.png"
 export default function NavBar() {
     return (
-        <nav className="navbar md:navbar-expand bg-1 fg-2">
+        <nav className="navbar md:navbar-expand bg-1 fg-2 fixed-top p-0 ">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
                     <img src={assets} alt="Framework Logo" className="d-inline-block align-text-top" width="160"/>

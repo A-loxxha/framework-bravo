@@ -1,6 +1,6 @@
 export default function Footer({year}) {
     return (
-        <footer classNameName="footer bg-1 fg-2 m-9">
+        <footer className="footer bg-1 fg-2 m-9">
             <div id="footer">
             <div className="container">
                 <ul id="company-footer">

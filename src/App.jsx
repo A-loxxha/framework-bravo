@@ -1,43 +1,113 @@
 import NavBar from "./components/NavBar"
 import Hero from "./components/Hero"
-import Card from "./components/Card"
+import ProductList from "./components/ProductList"
 import Footer from "./components/Footer"
+import Buttons from "./Buttons"
 import "./App.css"
 
 export default function App() {
+  const products = [
+    {
+      id: 1,
+      name: "Framework Laptop 12 (Intel Core Series 3)",
+      imageUrl: "https://static.frame.work/vnhapdfuirbckad88ctfkwlb0hjg",
+      price: 699,
+      isAvailable: true
+    },
+    {
+      id: 2,
+      name: "Framework Laptop 12 DIY Edition (Intel Core Series 3)",
+      imageUrl: "https://static.frame.work/dmgr8ou5tmk5podprsmlm0wlq9vw",
+      price: 549,
+      isAvailable: true
+    },
+    {
+      id: 3,
+      name: "Framework Laptop 13 Pro DIY Edition (AMD AI 300 Series)",
+      imageUrl: "https://static.frame.work/u2h7dlre8cgys5k97odeo4gqjd0v",
+      price: 1399,
+      isAvailable: false
+    },
+    {
+      id: 4,
+      name: "Framework Laptop 13 Pro DIY Edition (Intel Core Ulta Series 3)",
+      imageUrl: "https://static.frame.work/p4pbvfiu128s84oplq2jjhtf7n0i",
+      price: 1199,
+      isAvailable: true
+    },
+    {
+      id: 5,
+      name: "Framework Laptop 13 Pro (AMD Ryzen AI 300 Series)",
+      imageUrl: "https://static.frame.work/vhz9cwchzrgaz4le82wlqv6ca87a",
+      price: 2299,
+      isAvailable: false
+    },
+    {
+      id: 6,
+      name: "Framework Laptop 13 Pro (Intel Core Ultra Series 3)",
+      imageUrl: "https://static.frame.work/vhz9cwchzrgaz4le82wlqv6ca87a",
+      price: 1599,
+      isAvailable: true
+    },
+    {
+      id: 7,
+      name: "Framework Laptop 16(AMD Ryzen AI 300 Series)",
+      imageUrl: "https://static.frame.work/v1d1q33fcehes9p3ujfj6atumc75",
+      price: 1839,
+      isAvailable: true
+    },
+    {
+      id: 8,
+      name: "Framework Laptop 16 DIY Edition (AMD Ryzen AI 300 Series)",
+      imageUrl: "https://static.frame.work/3psgzvjutbwbps4z4if4skfqfw3r",
+      price: 1249,
+      isAvailable: false
+    },
+    {
+      id: 9,
+      name: "Framework Laptop 12 DIY Edition (13th Gen Intel Core)",
+      imageUrl: "https://static.frame.work/3tn9i090bln2ml3aowtzoj381jy5",
+      price: 499,
+      isAvailable: true
+    },
+    {
+      id: 10,
+      name: "Framework Laptop 13 DIY Edition (AMD Ryzen AI 300 Series)",
+      imageUrl: "https://static.frame.work/5k5bmp0edunqm861pn6sidt7tbwo",
+      price: 849,
+      isAvailable: false
+    },
+    {
+      id: 11,
+      name: "Framework Laptop 13 (AMD Ryzen AI 300 Series)",
+      imageUrl: "https://static.frame.work/7lprh50scjvsorxyv03i6yg5cbc2",
+      price: 1049,
+      isAvailable: true
+    },
+    {
+      id: 12,
+      name: "Framework Laptop 12 (13th Gen Intel Core)",
+      imageUrl: "https://static.frame.work/1rruqwgwxrszmoq1d7ghoai6iid4",
+      price: 699,
+      isAvailable: true
+    },
+  ]
+  
+
   return (
     <>
       <NavBar/>
-      <Hero/>
+      <div className="container-fluid button-container d-flex justify-content-flex-start flex-wrap ">
+        <Buttons>What's New</Buttons>
+        <Buttons>Best Sellers</Buttons>
+        <Buttons>Bundles</Buttons>
+        <Buttons>Intel</Buttons>
+        <Buttons>AMD</Buttons>
+        <Buttons>Pre-order now</Buttons>
+      </div>
       <main className="container">
-        <h1>Framework Laptop 13 is a thin, light, and fast 13.5” notebook that is simple to customize, upgrade, and repair, so it stays yours for longer.</h1>
-        <div className="row">
-          <Card>
-            <img src="https://images.frame.work/frameworkmarketplace/aeUO651ZCF7ETVrh_fw13-family_overview_highlights_customize.jpg?auto=format%2Ccompress" className="card-img-top" alt="..."/>
-            <div className="card-body">
-              <h4 className="card-title">Customize</h4>
-              <p className="card-text">Expansion Cards, keyboard languages, Bezel colors. It’s yours to choose.</p>
-              <a href="#" className="btn-solid theme-success">Buy Now</a>
-            </div>
-
-          </Card>
-          <Card>
-            <img src="https://images.frame.work/frameworkmarketplace/aeUO7Z1ZCF7ETVrj_fw13-family_overview_highlights_upgrade.jpg?auto=format%2Ccompress" className="card-img-top" alt="..."/>
-            <div className="card-body">
-              <h4 className="card-title">Upgrade</h4>
-              <p className="card-text">Upgrade your processor generation-over-generation, and add more memory and storage whenever you need.</p>
-              <a href="#" className="btn-solid theme-warning">Buy Now</a>
-            </div>
-          </Card>
-          <Card>
-            <img src="https://images.frame.work/frameworkmarketplace/aeUO7J1ZCF7ETVri_fw13-family_overview_highlights_repair.jpg?auto=format%2Ccompress" className="card-img-top" alt="..."/>
-            <div className="card-body">
-              <h4 className="card-title">Repair</h4>
-              <p className="card-text">Every part is replaceable with just the one tool that comes in the box.</p>
-              <a href="#" className="btn-solid theme-success">Buy Now</a>
-            </div>
-          </Card>
-        </div>
+        <h1 className="m-9">Framework Laptops</h1>
+        <ProductList products={products}/>
            
         </main>  
         <Footer year={new Date().getFullYear()}/>

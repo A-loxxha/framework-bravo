@@ -1,5 +1,12 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css");
 
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: hwb(0 92% 7%);
+  color: rgb(7, 7, 7);
+}
 .hero {
   height: 600px;
   background-image: url("https://images.frame.work/frameworkmarketplace/aJBl86Tt2nPbZzs1_homepage_fw13-banner_desktop.jpg?auto=format,compress&fit=crop&h=600&w=1126");
@@ -12,8 +19,30 @@
 
 }
 
-#footer {
+.navbar {
+  background-color: lab(100% 0.01 -0.01);
+  color: rgb(7, 7, 7);
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 1em;
+  height: 80px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: rgb(7, 7, 7);
+}
+
+.button-container {
+  margin-top: 80px;
+  padding: 20px;
+}
+.footer {
     background-color: hwb(0 4% 96%);
+    margin-top: 20px;
+}
+
+#footer {
     color: white;
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;

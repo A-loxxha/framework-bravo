@@ -1,7 +1,19 @@
-export default function Card({children}) {
+export default function Card({ name, imageUrl, price, isAvailable }) {
     return (
-        <div className="card col-4 mx-auto m-9">
-            {children}
+        <div className="col-4 mx-auto m-9">
+            <div className="card h-100 fg-2">
+                <img src={imageUrl} alt={name} className="card-img-top rounded" />
+                <div className="card-body">
+                    <h5 className="card-title">{name}</h5>
+                    <p className="card-text">Starting at ${price}</p>
+                    {isAvailable ? (
+                        <button onClick={(()=> alert("Added to Cart"))} className="btn btn-primary">Add to Cart</button>
+                        ) : (
+                        <button className="btn btn-secondary" disabled>Out of Stock</button>
+                    )}
+                </div>
+                
+            </div>  
         </div>
     )
 }
