@@ -1,6 +1,6 @@
 import Card from "./Card"
 
-export default function ProductList({ products }) {
+export default function ProductList({ products, onAddToCart, toggleCart }) {
     return (
         <div className="row">
             {products.map((product) => (
@@ -10,6 +10,9 @@ export default function ProductList({ products }) {
                     imageUrl={product.imageUrl}
                     price={product.price}
                     isAvailable={product.isAvailable}
+                    id={product.id}
+                    onAddToCart={onAddToCart}
+                    toggleCart={toggleCart}
                 />
             ))}
         </div>

@@ -4,10 +4,12 @@ import ProductList from "./components/ProductList"
 import Footer from "./components/Footer"
 import Buttons from "./Buttons"
 import SideBar from "./components/SideBar"
+import { useState } from "react"
 import "./App.css"
+import ProductCart from "./components/ProductCart"
 
 export default function App() {
-  const products = [
+  const [products, setProducts] = useState([
     {
       id: 1,
       name: "Framework Laptop 12 (Intel Core Series 3)",
@@ -92,13 +94,39 @@ export default function App() {
       price: 699,
       isAvailable: true
     },
-  ]
+  ])
+
+  const [cartItems, setCartItems] = useState([])
+
+  function addtoCart(id) {
+    const productToAdd = products.find((product)=> product.id === id)
+    setCartItems ([...cartItems, productToAdd])
+    displayCart()
   
+  }
+
+  
+
+  function removeFromCart(id) {
+    const remainingCartItems = cartItems.filter((item)=> item.id !== id)
+    setCartItems(remainingCartItems)
+  }
+  
+  const [isCartOpen, setIsCartOpen] = useState()
+
+  function displayCart() {
+    setIsCartOpen(true)
+  }
+
+  function hideCart() {
+    setIsCartOpen(false)
+  }
 
   return (
     <>
       <NavBar/>
-      <SideBar/>
+      {!isCartOpen && <SideBar/>}
+      {!isCartOpen ?
       <main className="container">
         <div className="container-fluid button-container d-flex justify-content-flex-start flex-wrap ">
         <Buttons>What's New</Buttons>
@@ -109,10 +137,29 @@ export default function App() {
         <Buttons>Pre-order now</Buttons>
       </div>
         <h1 className="m-9">Framework Laptops</h1>
-        <ProductList products={products}/>
+        <ProductList products={products} onAddToCart={addtoCart}/>
            
-      </main>  
-        <Footer year={new Date().getFullYear()}/>
+      </main> : 
+        <main className="container cartopen">
+        <div className="container-fluid button-container d-flex justify-content-flex-start flex-wrap ">
+        <Buttons>What's New</Buttons>
+        <Buttons>Best Sellers</Buttons>
+        <Buttons>Bundles</Buttons>
+        <Buttons>Intel</Buttons>
+        <Buttons>AMD</Buttons>
+        <Buttons>Pre-order now</Buttons>
+      </div>
+        <h1 className="m-9">Framework Laptops</h1>
+        <ProductList products={products} onAddToCart={addtoCart}/>
+           
+      </main>}
+      
+      
+      {isCartOpen && <ProductCart cartItems={cartItems} removeFromCart={removeFromCart} hideCart={hideCart}/>}
+      
+      {!isCartOpen && <Footer year={new Date().getFullYear()}/>}
+      
+      
 
     </>
     

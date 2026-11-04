@@ -1,4 +1,6 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css");
+
 
 body {
   margin: 0;
@@ -16,6 +18,7 @@ body {
   left: 0;
   background-color: hwb(0 96% 4%);
   overflow-x: hidden;
+  overflow-y: scroll;
   padding-top: 20px;
   padding-left: 20px;
 }
@@ -23,6 +26,12 @@ main {
   margin-left: 250px;
   padding: 20px;
 }
+
+.cartopen {
+    margin-left: 0;
+    padding: 20px
+}
+
 .hero {
   height: 600px;
   background-image: url("https://images.frame.work/frameworkmarketplace/aJBl86Tt2nPbZzs1_homepage_fw13-banner_desktop.jpg?auto=format,compress&fit=crop&h=600&w=1126");
@@ -31,7 +40,7 @@ main {
   justify-content: flex-start;
   align-items:flex-start;
   text-align: left;
-    padding: 100px 100px;
+padding: 100px 100px;
 
 }
 
@@ -53,10 +62,35 @@ main {
   margin-top: 80px;
   padding: 20px;
 }
+
+.product-cart {
+    height: 77%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 100px;
+    right: 0;
+    background-color: hwb(0 96% 4%);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.product-cart .close-button {
+    margin-left: 35px;
+}
+
 .footer {
     background-color: hwb(0 4% 96%);
     margin-top: 20px;
     margin-left: 250px;
+}
+
+.footer .cartopen{
+    margin-left:0px;
+    padding: 20px
 }
 
 #footer {
