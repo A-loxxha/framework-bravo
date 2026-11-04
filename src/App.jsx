@@ -157,7 +157,13 @@ export default function App() {
       
       {isCartOpen && <ProductCart cartItems={cartItems} removeFromCart={removeFromCart} hideCart={hideCart}/>}
       
-      {!isCartOpen && <Footer year={new Date().getFullYear()}/>}
+      {!isCartOpen ? 
+      <div className="footer">
+        <Footer year={new Date().getFullYear()}/>
+      </div>
+       : <div className="footer-cartopen">
+        <Footer year={new Date().getFullYear()}/>
+      </div>}
       
       
 

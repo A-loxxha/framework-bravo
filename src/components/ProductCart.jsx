@@ -1,24 +1,27 @@
 export default function ProductCart({ cartItems, removeFromCart, hideCart }) {
     return (
         <div className="product-cart table-card">
+            <div className="header p-3">
+                <i class="bi bi-cart">
+                    <span className="fs-lg">
+                        Shopping Cart
+                    </span>
+                </i>
+                <button className="btn btn-sm close-button" onClick={()=> hideCart()}>
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
             
-            <i class="bi bi-cart">
-                <span className="fs-lg">
-                    Shopping Cart
-                </span>
-            </i>
-            <button className="btn btn-sm close-button" onClick={()=> hideCart()}>
-                <i class="bi bi-x"></i>
-            </button>
             {cartItems.length === 0 ? (
                 <p>Your cart is empty.</p>
             ) : (
-                <table className="table table-hover">
+                <div className="table-card">
+                    <table className="table table-hover">
                     <thead>
                         <tr>
                             <th>Product</th>
                             <th>Price</th>
-                            <th>Remove</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +40,8 @@ export default function ProductCart({ cartItems, removeFromCart, hideCart }) {
                     
                     </tbody>
                 </table>
+                </div>
+                
             )}
         </div>
     )

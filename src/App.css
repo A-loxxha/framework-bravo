@@ -79,7 +79,7 @@ padding: 100px 100px;
 }
 
 .product-cart .close-button {
-    margin-left: 35px;
+    margin-left: 20px;
 }
 
 .footer {
@@ -88,9 +88,10 @@ padding: 100px 100px;
     margin-left: 250px;
 }
 
-.footer .cartopen{
-    margin-left:0px;
-    padding: 20px
+.footer-cartopen{
+    background-color: hwb(0 4% 96%);
+    margin-top: 20px;
+    margin-right:250px;
 }
 
 #footer {
