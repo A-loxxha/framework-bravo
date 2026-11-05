@@ -1,173 +1,130 @@
+import React, { useState } from "react"
+import "./App.css"
+
 import NavBar from "./components/NavBar"
 import Hero from "./components/Hero"
 import ProductList from "./components/ProductList"
 import Footer from "./components/Footer"
 import Buttons from "./Buttons"
 import SideBar from "./components/SideBar"
-import { useState } from "react"
-import "./App.css"
 import ProductCart from "./components/ProductCart"
+import { initialProducts } from "./components/ProductsData"
 
 export default function App() {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "Framework Laptop 12 (Intel Core Series 3)",
-      imageUrl: "https://static.frame.work/vnhapdfuirbckad88ctfkwlb0hjg",
-      price: 699,
-      isAvailable: true
-    },
-    {
-      id: 2,
-      name: "Framework Laptop 12 DIY Edition (Intel Core Series 3)",
-      imageUrl: "https://static.frame.work/dmgr8ou5tmk5podprsmlm0wlq9vw",
-      price: 549,
-      isAvailable: true
-    },
-    {
-      id: 3,
-      name: "Framework Laptop 13 Pro DIY Edition (AMD AI 300 Series)",
-      imageUrl: "https://static.frame.work/u2h7dlre8cgys5k97odeo4gqjd0v",
-      price: 1399,
-      isAvailable: false
-    },
-    {
-      id: 4,
-      name: "Framework Laptop 13 Pro DIY Edition (Intel Core Ulta Series 3)",
-      imageUrl: "https://static.frame.work/p4pbvfiu128s84oplq2jjhtf7n0i",
-      price: 1199,
-      isAvailable: true
-    },
-    {
-      id: 5,
-      name: "Framework Laptop 13 Pro (AMD Ryzen AI 300 Series)",
-      imageUrl: "https://static.frame.work/vhz9cwchzrgaz4le82wlqv6ca87a",
-      price: 2299,
-      isAvailable: false
-    },
-    {
-      id: 6,
-      name: "Framework Laptop 13 Pro (Intel Core Ultra Series 3)",
-      imageUrl: "https://static.frame.work/vhz9cwchzrgaz4le82wlqv6ca87a",
-      price: 1599,
-      isAvailable: true
-    },
-    {
-      id: 7,
-      name: "Framework Laptop 16(AMD Ryzen AI 300 Series)",
-      imageUrl: "https://static.frame.work/v1d1q33fcehes9p3ujfj6atumc75",
-      price: 1839,
-      isAvailable: true
-    },
-    {
-      id: 8,
-      name: "Framework Laptop 16 DIY Edition (AMD Ryzen AI 300 Series)",
-      imageUrl: "https://static.frame.work/3psgzvjutbwbps4z4if4skfqfw3r",
-      price: 1249,
-      isAvailable: false
-    },
-    {
-      id: 9,
-      name: "Framework Laptop 12 DIY Edition (13th Gen Intel Core)",
-      imageUrl: "https://static.frame.work/3tn9i090bln2ml3aowtzoj381jy5",
-      price: 499,
-      isAvailable: true
-    },
-    {
-      id: 10,
-      name: "Framework Laptop 13 DIY Edition (AMD Ryzen AI 300 Series)",
-      imageUrl: "https://static.frame.work/5k5bmp0edunqm861pn6sidt7tbwo",
-      price: 849,
-      isAvailable: false
-    },
-    {
-      id: 11,
-      name: "Framework Laptop 13 (AMD Ryzen AI 300 Series)",
-      imageUrl: "https://static.frame.work/7lprh50scjvsorxyv03i6yg5cbc2",
-      price: 1049,
-      isAvailable: true
-    },
-    {
-      id: 12,
-      name: "Framework Laptop 12 (13th Gen Intel Core)",
-      imageUrl: "https://static.frame.work/1rruqwgwxrszmoq1d7ghoai6iid4",
-      price: 699,
-      isAvailable: true
-    },
-  ])
+  const [products, setProducts] = useState(initialProducts);
+  const [cartItems, setCartItems] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const [cartItems, setCartItems] = useState([])
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
+
+  const [nameInput, setNameInput] = useState("");
+  const [priceInput, setPriceInput] = useState("");
+  const [imageInput, setImageInput] = useState("");
+
+  const handleCreateProduct = (e) => {
+    e.preventDefault();
+    if (!nameInput || !priceInput) {
+      alert("Please provide at least a Product Name and Price!");
+      return;
+    }
+
+    const brandNewProduct = {
+      id: Date.now(),
+      name: nameInput,
+      price: parseFloat(priceInput),
+      imageUrl: imageInput || "https://unsplash.com",
+      isAvailable: true
+    };
+
+    setProducts([...products, brandNewProduct]);
+    setNameInput("");
+    setPriceInput("");
+    setImageInput("");
+  };
 
   function addtoCart(id) {
-    const productToAdd = products.find((product)=> product.id === id)
-    setCartItems ([...cartItems, productToAdd])
-    displayCart()
-  
+    const productToAdd = products.find((product) => product.id === id);
+    if (productToAdd) {
+      setCartItems([...cartItems, productToAdd]);
+      setIsCartOpen(true);
+    }
   }
-
-  
 
   function removeFromCart(id) {
-    const remainingCartItems = cartItems.filter((item)=> item.id !== id)
-    setCartItems(remainingCartItems)
-  }
-  
-  const [isCartOpen, setIsCartOpen] = useState()
-
-  function displayCart() {
-    setIsCartOpen(true)
-  }
-
-  function hideCart() {
-    setIsCartOpen(false)
+    setCartItems(cartItems.filter((item) => item.id !== id));
   }
 
   return (
     <>
-      <NavBar/>
-      {!isCartOpen && <SideBar/>}
-      {!isCartOpen ?
-      <main className="container">
-        <div className="container-fluid button-container d-flex justify-content-flex-start flex-wrap ">
-        <Buttons>What's New</Buttons>
-        <Buttons>Best Sellers</Buttons>
-        <Buttons>Bundles</Buttons>
-        <Buttons>Intel</Buttons>
-        <Buttons>AMD</Buttons>
-        <Buttons>Pre-order now</Buttons>
-      </div>
-        <h1 className="m-9">Framework Laptops</h1>
-        <ProductList products={products} onAddToCart={addtoCart}/>
-           
-      </main> : 
-        <main className="container cartopen">
-        <div className="container-fluid button-container d-flex justify-content-flex-start flex-wrap ">
-        <Buttons>What's New</Buttons>
-        <Buttons>Best Sellers</Buttons>
-        <Buttons>Bundles</Buttons>
-        <Buttons>Intel</Buttons>
-        <Buttons>AMD</Buttons>
-        <Buttons>Pre-order now</Buttons>
-      </div>
-        <h1 className="m-9">Framework Laptops</h1>
-        <ProductList products={products} onAddToCart={addtoCart}/>
-           
-      </main>}
+      <NavBar onToggleAdmin={() => setIsAdminOpen(!isAdminOpen)} />
       
+      {!isCartOpen && <SideBar />}
       
-      {isCartOpen && <ProductCart cartItems={cartItems} removeFromCart={removeFromCart} hideCart={hideCart}/>}
-      
-      {!isCartOpen ? 
-      <div className="footer">
-        <Footer year={new Date().getFullYear()}/>
-      </div>
-       : <div className="footer-cartopen">
-        <Footer year={new Date().getFullYear()}/>
-      </div>}
-      
-      
+      <main className={`container ${isCartOpen ? "cartopen" : ""}`}>
+        
+        {isAdminOpen && (
+          <div className="bg-white p-4 border rounded shadow-sm" style={{ marginTop: '100px', marginBottom: '20px' }}>
+            <h3 className="mb-3 text-dark fw-bold">Add New Laptop Model</h3>
+            <form onSubmit={handleCreateProduct} className="row g-3">
+              <div className="col-12 col-md-4">
+                <label className="form-label fw-semibold text-muted">Laptop Model Name</label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  placeholder="e.g. Framework Laptop 13 Pro Max" 
+                  value={nameInput} 
+                  onChange={(e) => setNameInput(e.target.value)} 
+                />
+              </div>
+              <div className="col-12 col-md-3">
+                <label className="form-label fw-semibold text-muted">Price ($ USD)</label>
+                <input 
+                  type="number" 
+                  className="form-control" 
+                  placeholder="e.g. 999" 
+                  value={priceInput} 
+                  onChange={(e) => setPriceInput(e.target.value)} 
+                />
+              </div>
+              <div className="col-12 col-md-3">
+                <label className="form-label fw-semibold text-muted">Image URL (Optional)</label>
+                <input 
+                  type="url" 
+                  className="form-control" 
+                  placeholder="Paste direct link..." 
+                  value={imageInput} 
+                  onChange={(e) => setImageInput(e.target.value)} 
+                />
+              </div>
+              <div className="col-12 col-md-2 d-flex align-items-end">
+                <button type="submit" className="btn btn-dark w-100 fw-bold py-2">Add Model</button>
+              </div>
+            </form>
+          </div>
+        )}
 
+        {!isAdminOpen && <div style={{ height: '100px' }}></div>}
+
+        <div className="container-fluid button-container d-flex justify-content-start flex-wrap gap-2 m-0 p-0 mb-4">
+          <Buttons>What's New</Buttons>
+          <Buttons>Best Sellers</Buttons>
+          <Buttons>Bundles</Buttons>
+          <Buttons>Intel</Buttons>
+          <Buttons>AMD</Buttons>
+          <Buttons>Pre-order now</Buttons>
+        </div>
+        
+        <h1 className="mb-4">Framework Laptops</h1>
+        <ProductList products={products} onAddToCart={addtoCart} />
+      </main>
+      
+      {isCartOpen && (
+        <ProductCart cartItems={cartItems} removeFromCart={removeFromCart} hideCart={() => setIsCartOpen(false)} />
+      )}
+      
+      <div className={isCartOpen ? "footer-cartopen" : "footer"}>
+        <Footer year={new Date().getFullYear()} />
+      </div>
     </>
-    
-  )
+  );
 }
