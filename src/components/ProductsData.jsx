@@ -1,4 +1,4 @@
-export const initialProducts = [
+/**export const initialProducts = [
 {
 id: 1,
 name: "Framework Laptop 12 (Intel Core Series 3)",
@@ -41,4 +41,4 @@ imageUrl: "https://static.frame.work/vhz9cwchzrgaz4le82wlqv6ca87a",
 price: 1599,
 isAvailable: true
 }
-];
+];*/

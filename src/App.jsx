@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState} from "react"
+import { useEffect } from "react"
 import "./App.css"
 
 import NavBar from "./components/NavBar"
@@ -8,10 +9,9 @@ import Footer from "./components/Footer"
 import Buttons from "./Buttons"
 import SideBar from "./components/SideBar"
 import ProductCart from "./components/ProductCart"
-import { initialProducts } from "./components/ProductsData"
 
 export default function App() {
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -20,6 +20,12 @@ export default function App() {
   const [nameInput, setNameInput] = useState("");
   const [priceInput, setPriceInput] = useState("");
   const [imageInput, setImageInput] = useState("");
+
+  useEffect(() => {fetch("http://localhost:4000/products")
+    .then((response) => response.json())
+    .then((data) => setProducts(data));},
+    []);
+
 
   const handleCreateProduct = (e) => {
     e.preventDefault();
