@@ -61,8 +61,22 @@ export default function App() {
     setCartItems(cartItems.filter((item) => item.id !== id));
   }
 
+  function deleteProduct(id) {
+  fetch(`http://localhost:4000/products/${id}`, {
+    method: "DELETE",
+    headers: {
+      "accept": "application/json"
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setProducts(products.filter((product) => product.id !== id));
+    });
+}
+
   return (
-    <ProductContext.Provider value={{ products, addtoCart }}>
+    <ProductContext.Provider value={{ products, addtoCart, deleteProduct }}>
       <NavBar onToggleAdmin={() => setIsAdminOpen(!isAdminOpen)} />
       
       {!isCartOpen && <SideBar />}

@@ -1,4 +1,4 @@
-export default function Card({ name, imageUrl, price, isAvailable, id, onAddToCart}) {
+export default function Card({ name, imageUrl, price, isAvailable, id, onAddToCart, deleteProduct }) {
     return (
         <div className="col-4 mx-auto m-9">
             <div className="card h-100 fg-2">
@@ -7,13 +7,13 @@ export default function Card({ name, imageUrl, price, isAvailable, id, onAddToCa
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">Starting at ${price}</p>
                     {isAvailable ? (
-                        <button onClick={(()=> onAddToCart(id))} className="btn btn-primary">Add to Cart</button>
-                        ) : (
+                        <button onClick={() => onAddToCart(id)} className="btn btn-primary">Add to Cart</button>
+                    ) : (
                         <button className="btn btn-secondary" disabled>Out of Stock</button>
                     )}
+                    <button onClick={() => deleteProduct(id)} className="btn btn-danger ms-2">Delete</button>
                 </div>
-                
-            </div>  
+            </div>
         </div>
     )
 }
