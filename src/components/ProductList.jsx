@@ -4,7 +4,7 @@ import { ProductContext } from "../contexts/ProductContext";
 
 export default function ProductList() {
 
-    const { products, onAddToCart, toggleCart, deleteProduct } = useContext(ProductContext);
+    const { products, onAddToCart, toggleCart, onDelete } = useContext(ProductContext);
 
     return (
         <div className="row">
@@ -18,7 +18,7 @@ export default function ProductList() {
                     id={product.id}
                     onAddToCart={onAddToCart}
                     toggleCart={toggleCart}
-                    deleteProduct={deleteProduct}
+                    onDelete={onDelete}
                 />
             ))}
         </div>

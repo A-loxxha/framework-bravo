@@ -76,7 +76,7 @@ export default function App() {
 }
 
   return (
-    <ProductContext.Provider value={{ products, addtoCart, deleteProduct }}>
+    <ProductContext.Provider value={{ products, onAddToCart: addtoCart, onDelete: deleteProduct }}>
       <NavBar onToggleAdmin={() => setIsAdminOpen(!isAdminOpen)} />
       
       {!isCartOpen && <SideBar />}

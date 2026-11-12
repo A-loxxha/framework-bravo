@@ -1,4 +1,4 @@
-export default function Card({ name, imageUrl, price, isAvailable, id, onAddToCart, deleteProduct }) {
+export default function Card({ name, imageUrl, price, isAvailable, id, onAddToCart, onDelete }) {
     return (
         <div className="col-4 mx-auto m-9">
             <div className="card h-100 fg-2">
@@ -11,7 +11,7 @@ export default function Card({ name, imageUrl, price, isAvailable, id, onAddToCa
                     ) : (
                         <button className="btn btn-secondary" disabled>Out of Stock</button>
                     )}
-                    <button onClick={() => deleteProduct(id)} className="btn btn-danger ms-2">Delete</button>
+                    <button onClick={() => onDelete(id)} className="btn btn-danger ms-2">Delete</button>
                 </div>
             </div>
         </div>
