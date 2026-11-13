@@ -1,7 +1,6 @@
-import React, { useState} from "react"
+import { useState} from "react"
 import { useEffect } from "react"
 import "./App.css"
-
 import NavBar from "./components/NavBar"
 import Hero from "./components/Hero"
 import ProductList from "./components/ProductList"
@@ -9,6 +8,8 @@ import Footer from "./components/Footer"
 import Buttons from "./Buttons"
 import SideBar from "./components/SideBar"
 import ProductCart from "./components/ProductCart"
+import { ProductContext } from "./contexts/ProductContext";
+
 
 export default function App() {
   const [products, setProducts] = useState([]);
@@ -60,8 +61,22 @@ export default function App() {
     setCartItems(cartItems.filter((item) => item.id !== id));
   }
 
+  function deleteProduct(id) {
+  fetch(`http://localhost:4000/products/${id}`, {
+    method: "DELETE",
+    headers: {
+      "accept": "application/json"
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setProducts(products.filter((product) => product.id !== id));
+    });
+}
+
   return (
-    <>
+    <ProductContext.Provider value={{ products, onAddToCart: addtoCart, onDelete: deleteProduct }}>
       <NavBar onToggleAdmin={() => setIsAdminOpen(!isAdminOpen)} />
       
       {!isCartOpen && <SideBar />}
@@ -121,7 +136,7 @@ export default function App() {
         </div>
         
         <h1 className="mb-4">Framework Laptops</h1>
-        <ProductList products={products} onAddToCart={addtoCart} />
+        <ProductList />
       </main>
       
       {isCartOpen && (
@@ -131,6 +146,6 @@ export default function App() {
       <div className={isCartOpen ? "footer-cartopen" : "footer"}>
         <Footer year={new Date().getFullYear()} />
       </div>
-    </>
+    </ProductContext.Provider>
   );
 }

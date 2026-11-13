@@ -1,6 +1,11 @@
 import Card from "./Card"
+import { useContext } from "react"
+import { ProductContext } from "../contexts/ProductContext";
 
-export default function ProductList({ products, onAddToCart, toggleCart }) {
+export default function ProductList() {
+
+    const { products, onAddToCart, toggleCart, onDelete } = useContext(ProductContext);
+
     return (
         <div className="row">
             {products.map((product) => (
@@ -13,6 +18,7 @@ export default function ProductList({ products, onAddToCart, toggleCart }) {
                     id={product.id}
                     onAddToCart={onAddToCart}
                     toggleCart={toggleCart}
+                    onDelete={onDelete}
                 />
             ))}
         </div>
